@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+}
+
+.PlayList {
+  padding-left: 400px;
+  display: inline-block;
+}
+.PlayList li {
+  text-decoration: none;
+}
+
+
+
