@@ -73,3 +73,16 @@ class App extends Component {
   }
 }
 export default App;
+
+<div >
+        <ul className="PlayList">
+          {this.state.songs.map((item, index) => {
+          return <li song={item.song} key={index}>{item.song}</li>})}
+          {this.state.songs.map((item, index) => {
+          return <li artist={item.artist} key={index}>{item.artist}</li>})}
+          {this.state.songs.map((item, index) => {
+          return <li genre={item.genre} key={index}>{item.genre}</li>})}
+          {this.state.songs.map((item, index) => {
+          return <li rating={item.rating} key={index}>{item.rating}</li>})}
+        </ul>
+        </div>

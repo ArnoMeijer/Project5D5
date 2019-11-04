@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import "./App.module.css";
+import axios from './axios-songs';
+import  "./App.css";
+
 // import PlayList from './components/PlayList';
 
 class App extends Component {
@@ -21,7 +23,7 @@ class App extends Component {
         },
         {
           song: "Kleine Jongen",
-          artist: "Marco Borsato",
+          artist: "Andre Hazes",
           genre: "Nederlands",
           rating: 3
         }
@@ -40,7 +42,7 @@ class App extends Component {
         artist: "",
         genre: "",
         rating: ""
-      }
+      }    
     });
   };
 
@@ -75,14 +77,24 @@ class App extends Component {
         this.setState({ newSong: newSong });
 
       };
-  
+
+      playListBackendHandler = () => {
+        const songsBackend = {
+          songs: this.state.songs
+        }
+        axios.post('/playlist.json', songsBackend)
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
+      };
+
+      
 
   render() {
     return (
       <React.Fragment>
-      <div>
+      <div className="Background">
         <div className="App">
-          <h1>Arno's Play List</h1>
+          <h2>Voeg hier je favoriete liedjes toe:</h2>
 
           <input
             type="text"
@@ -105,20 +117,33 @@ class App extends Component {
           placeholder="Rating"
           onChange={this.songRatingHandler}
             value={this.state.newSong.rating}></input>
-          <button type="button" onClick={this.addSongHandler}>
-            ADD
+          <button type="button" onClick={() => {
+            this.addSongHandler();
+            this.playListBackendHandler();}}>
+            Voeg Toe
           </button>
         </div>
-        <ul className="PlayList">
+        <div className="PlayList">
+          <h2>Arno's Play List</h2>
+        <div>
+        <ul className="List"><u>Lied</u>
           {this.state.songs.map((item, index) => {
-          return <li song={item.song} key={index}>{item.song}</li>})}
+          return <li song={item.song} key={index}>{item.song}</li>})} 
+        </ul>
+        <ul className="List"><u>Artiest</u>
           {this.state.songs.map((item, index) => {
           return <li artist={item.artist} key={index}>{item.artist}</li>})}
+        </ul>
+        <ul className="List"><u>Genre</u>
           {this.state.songs.map((item, index) => {
           return <li genre={item.genre} key={index}>{item.genre}</li>})}
-          {this.state.songs.map((item, index) => {
+        </ul>
+        <ul className="List"><u>Rating</u>
+        {this.state.songs.map((item, index) => {
           return <li rating={item.rating} key={index}>{item.rating}</li>})}
         </ul>
+        </div>
+        </div>
       </div>
       </React.Fragment>
     );

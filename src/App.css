@@ -1,0 +1,38 @@
+.App {
+  text-align: center;
+  background-color: #005f6a;
+  color: white
+}
+
+.PlayList {
+  padding-left: 25px;
+  display: inline-block;
+  margin: 10px;
+  
+  }
+
+.PlayList h2 {
+  text-align: center;
+  background-color: #005f6a;
+  color: white
+}  
+
+.PlayList ul {
+  margin: 40px;
+  display: inline-block;
+  color: white
+  
+}
+
+.List li {
+  list-style-type: none;
+  margin-top: 20px;
+}
+
+.Background {
+  background-color: #005f6a;
+}
+
+
+
+
